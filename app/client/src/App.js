@@ -1,9 +1,9 @@
-
+import Map from "./components/map/Map.jsx";
 
 function App() {
   return (
     <div className="App">
-      <h1>Hallo Welt!</h1>
+      <Map></Map>
     </div>
   );
 }

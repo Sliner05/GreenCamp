@@ -13,18 +13,24 @@ const Map = () => {
     const y = e.nativeEvent.offsetY;
     console.log("Clicked " + x + " :x " + y + " :y");
     //console.log(e.nativeEvent.offsetX + " = Native event");
-    if (x > 100 && x < 200 && y > 100 && y < 200) {
-      // setPopUpContent("Popup 1 content");
-      // setPopUpVisible(true);
-      console.log("Point 1");
-    } else if (x > 300 && x < 400 && y > 300 && y < 400) {
-      // setPopUpContent("Popup 2 content");
-      // setPopUpVisible(true);
-      console.log("Point 2");
+    
+    if (x > 230 && x < 210 && y > 60 || y < 80) {
+      console.log("Zelt 1");
     }
+    
+
+    // if (x > 100 && x < 200 && y > 100 && y < 200) {
+    //   // setPopUpContent("Popup 1 content");
+    //   // setPopUpVisible(true);s
+    //   console.log("Point 1");
+    // } else if (x > 300 && x < 400 && y > 300 && y < 400) {
+    //   // setPopUpContent("Popup 2 content");
+    //   // setPopUpVisible(true);
+    //   console.log("Point 2");
+    // }
+
   };
   
-
   return (
     
     <div>

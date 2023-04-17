@@ -4,9 +4,15 @@ svg path {
     stroke-width: .25;
 }
 
-svg path:hover {
+
+svg path:hover{
     fill: aqua;
 }
-svg path::hover{
-    fill: aqua;
+svg{
+    /*background-image: url("./map-picture.jpg");
+    background-size: 6950px;*/
+    padding-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    padding-right: 10%;
 }

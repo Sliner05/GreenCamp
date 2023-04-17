@@ -1,0 +1,12 @@
+svg path {
+    fill: red;
+    stroke: blue;
+    stroke-width: .25;
+}
+
+svg path:hover {
+    fill: aqua;
+}
+svg path::hover{
+    fill: aqua;
+}

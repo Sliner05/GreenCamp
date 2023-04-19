@@ -1,0 +1,3 @@
+# gitignore für alles AUSSER /app/* --> client und server haben eigenene gitignores
+
+/DB/.idea

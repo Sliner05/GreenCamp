@@ -2,29 +2,7 @@ import React, { useState } from "react";
 import MapPi from "./map-picture.jpg";
 import pic from "./pic";
 import Pic from "./pic";
-//import poly from "././polygon/polygon.js"
-// import Polygon from "../polygon/polygon.js";
-
-//Ich han do schomol probiert s picture responsive zmache, theoretisch funktionierts
-
-
-// const mapping = [];
-//mapping.push(new Polygon([444,101],[428,145],[452,157],[472,112]));
-
-//Debug
-// let vertices = [[0, 0], [0, 1], [1, 1], [1, 0]];
-// let poly = new Polygon(vertices);
-
-// let point = [0.5, 0.5];
-// console.log(poly.contains(point)); // true
-
-// point = [2, 2];
-// console.log(poly.contains(point)); // false
-//Debug**
-
-
-//console.log("First Poly: "+ mapping[0]);
-
+import Popup from "./popUp";
 
 
 const Map = () => {
@@ -47,37 +25,16 @@ const Map = () => {
     }catch{console.log("mapping didnt work");}
     
 
-    // if (x > 100 && x < 200 && y > 100 && y < 200) {
-    //   // setPopUpContent("Popup 1 content");
-    //   // setPopUpVisible(true);s
-    //   console.log("Point 1");
-    // } else if (x > 300 && x < 400 && y > 300 && y < 400) {
-    //   // setPopUpContent("Popup 2 content");
-    //   // setPopUpVisible(true);
-    //   console.log("Point 2");
-    // }
 
   };
   
   return (
-    
-    // <div>
-    //   <map name="myMap" id="myMap">
-    //     <area id="node-a" shape="rect" coords="731,159,757,188" />
-    //     <area id="node-b" shape="rect" coords="685,139,713,168" />
-    //     <area id="node-c" shape="rect" coords="597,142,625,171" />
-    //   </map>
-    //   <img
-    //     id="myImage"
-    //     src={MapPi}
-    //     usemap="#myMap"
-    //     alt="Picture of the Camping Map"
-    //     style={{ width: "80%", height: "80%" }}
-    //     onClick={handleImageClick}
-    //   />
+    <>
       <Pic></Pic>
-    // </div>
-    
+      <Popup></Popup>
+
+    </>
+     
   );
   };
   

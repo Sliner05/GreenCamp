@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './popup.css';
+import axios from "axios";  
+
+
 
 function Popup() {
   const [popupOpen, setPopupOpen] = useState(false);
@@ -20,8 +23,19 @@ function Popup() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Hier kannst du die Daten verarbeiten und an den Server senden.
+
+    axios.post("http://localhost:3001/newClient" , {
+    vorname: formData.vorname,
+    nachname: formData.nachname,
+    fzNr: formData.fzNr,
+    strNr: formData.strNr,
+    str: formData.str,
+    plz: formData.plz,
+    ort: formData.ort,
+    land: formData.land,
+    kredNr: formData.kredNr
+    });
+
     console.log(formData);
     setPopupOpen(false);
   };

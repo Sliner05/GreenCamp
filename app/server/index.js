@@ -23,8 +23,9 @@ db.connect((err) => {
 });
 
 app.post("/newClient", (req, res) => {
+  let CamperCount;
+  console.log("post on /NewCLient");
   // no id -> auto increment
-  vorname = req.body.vorname;
   vorname = req.body.vorname;
   nachname = req.body.nachname;
   fzNr = req.body.fzNr;
@@ -34,22 +35,17 @@ app.post("/newClient", (req, res) => {
   ort = req.body.ort;
   land = req.body.land;
   kredNr = req.body.kredNr;
-  result;
   db.query(
     "select count(*) from TCamper where CamperVorname = ? and CamperNachname = ?",
     [vorname, nachname],
-    (err, res) => {
+    (err, resD) => {
       if (err) {
         console.log(err);
       } else {
-        if (res[0]["count(*)"] == 0) {
-          result = 0
-        }
-      }
-    }
-  );
-  if (result === 0) {
-    "INSERT INTO TCamper(CamperVorname, CamperNachname, CamperStrNr, CamperStrasse, CamperLand, CamperKredNr, CamperPLZ) VALUES (?,?,?,?, ?, ?, ?)",
+        if (resD[0]["count(*)"] == 0) {
+          console.log("count 0");
+          db.query(
+            "INSERT INTO TCamper(CamperVorname, CamperNachname, CamperStrNr, CamperStrasse, CamperLand, CamperKredNr, CamperPLZ) VALUES (?,?,?,?, ?, ?, ?)",
             [vorname, nachname, strNr, str, land, kredNr, plz],
             (err, result) => {
               if (err) {
@@ -57,13 +53,32 @@ app.post("/newClient", (req, res) => {
               } else {
                 res.send("Values Inserted");
               }
-            };
-  }
-  else {
-    res.send("Values already exist");
-  }
+            }
+          );
+        } else {
+          console.log("count >0");
+          res.send("Values already exist");
+        }
+      }
+    }
+  ); /*.then(() => {
+    console.log(CamperCount);
+    if (CamperCount === 0) {
+      "INSERT INTO TCamper(CamperVorname, CamperNachname, CamperStrNr, CamperStrasse, CamperLand, CamperKredNr, CamperPLZ) VALUES (?,?,?,?, ?, ?, ?)",
+        [vorname, nachname, strNr, str, land, kredNr, plz],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+            res.send("Values Inserted");
+          }
+        };
+    } else {
+      res.send("Values already exist");
+    }
+  });*/
 });
 
-app.listen(3030, () => {
+app.listen(3001, () => {
   console.log("da Boi running on port  3001");
 });

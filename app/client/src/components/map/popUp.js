@@ -97,11 +97,13 @@ function Popup() {
                 value={formData.kredNr}
                 onChange={handleChange}
               />
-              <button type="submit">Absenden</button>
+              <div class="row">
+                <button type="submit">Absenden</button>
+                <button class="closeBtn" onClick={() => setPopupOpen(false)}>
+                  Schließen
+                </button>
+              </div>
             </form>
-            <button class="closeBtn" onClick={() => setPopupOpen(false)}>
-              Schließen
-            </button>
           </div>
         </div>
       )}

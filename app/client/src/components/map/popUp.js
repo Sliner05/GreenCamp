@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import './popup.css';
+import React, { useState } from "react";
+import "./popup.css";
 
 function Popup() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
-    vorname: '',
-    nachname: '',
-    fzNr: '',
-    strNr: '',
-    str: '',
-    plz: '',
-    ort: '',
-    land: '',
-    kredNr: ''
+    vorname: "",
+    nachname: "",
+    fzNr: "",
+    strNr: "",
+    str: "",
+    plz: "",
+    ort: "",
+    land: "",
+    kredNr: "",
   });
 
   const handleChange = (e) => {
@@ -99,7 +99,9 @@ function Popup() {
               />
               <button type="submit">Absenden</button>
             </form>
-            <button onClick={() => setPopupOpen(false)}>Schließen</button>
+            <button class="closeBtn" onClick={() => setPopupOpen(false)}>
+              Schließen
+            </button>
           </div>
         </div>
       )}

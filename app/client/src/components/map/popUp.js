@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import './popup.css';
+import React, { useState } from "react";
+import "./popup.css";
 import axios from "axios";  
 
 
@@ -7,15 +7,15 @@ import axios from "axios";
 function Popup() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
-    vorname: '',
-    nachname: '',
-    fzNr: '',
-    strNr: '',
-    str: '',
-    plz: '',
-    ort: '',
-    land: '',
-    kredNr: ''
+    vorname: "",
+    nachname: "",
+    fzNr: "",
+    strNr: "",
+    str: "",
+    plz: "",
+    ort: "",
+    land: "",
+    kredNr: "",
   });
 
   const handleChange = (e) => {
@@ -111,9 +111,13 @@ function Popup() {
                 value={formData.kredNr}
                 onChange={handleChange}
               />
-              <button type="submit">Absenden</button>
+              <div class="row">
+                <button type="submit">Absenden</button>
+                <button class="closeBtn" onClick={() => setPopupOpen(false)}>
+                  Schließen
+                </button>
+              </div>
             </form>
-            <button onClick={() => setPopupOpen(false)}>Schließen</button>
           </div>
         </div>
       )}

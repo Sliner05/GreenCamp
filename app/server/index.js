@@ -26,6 +26,7 @@ app.post("/newClient", (req, res) => {
   let CamperCount;
   console.log("post on /NewCLient");
   // no id -> auto increment
+  
   vorname = req.body.vorname;
   nachname = req.body.nachname;
   fzNr = req.body.fzNr;

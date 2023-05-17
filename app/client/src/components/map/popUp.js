@@ -3,7 +3,10 @@ import "./popup.css";
 import axios from "axios";  
 
 
-
+const [id, setid] = useState(null);
+function passId(Id) {
+id = Id
+}
 function Popup() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -25,6 +28,7 @@ function Popup() {
   const handleSubmit = (e) => {
 
     axios.post("http://localhost:3001/newClient" , {
+    id: id, //id for get requests and reservations later
     vorname: formData.vorname,
     nachname: formData.nachname,
     fzNr: formData.fzNr,
@@ -42,7 +46,7 @@ function Popup() {
 
   return (
     <div className="App">
-      <button onClick={() => setPopupOpen(true)}>Öffne Popup</button>
+      <button id="345" onClick={() => {setPopupOpen(true), passId(e.target.id)}}>Öffne Popup</button>
       {popupOpen && (
         <div className="popup">
           <div className="popup-inner">

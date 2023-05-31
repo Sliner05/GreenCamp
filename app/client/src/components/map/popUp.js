@@ -3,11 +3,9 @@ import "./popup.css";
 import axios from "axios";  
 
 
-const [id, setid] = useState(null);
-function passId(Id) {
-id = Id
-}
+
 function Popup() {
+  let [id, setid] = useState(undefined);
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
     vorname: "",
@@ -44,9 +42,15 @@ function Popup() {
     setPopupOpen(false);
   };
 
+  function handleClick(e) {
+    id = e.target.id
+    setPopupOpen(true)
+    console.log(id);
+  }
+
   return (
     <div className="App">
-      <button id="345" onClick={() => {setPopupOpen(true), passId(e.target.id)}}>Öffne Popup</button>
+      <button id="345" onClick={handleClick}>Öffne Popup</button>
       {popupOpen && (
         <div className="popup">
           <div className="popup-inner">

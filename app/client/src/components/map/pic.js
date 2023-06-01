@@ -5,6 +5,9 @@ function Pic(PicWidth = "1066.000000pt", PicHeight = "686.000000pt") {
   //1600.000000pt,  1029.000000pt
   return (
     <div>
+
+
+      
       <svg
         version="1.0"
         xmlns="http://www.w3.org/2000/svg"

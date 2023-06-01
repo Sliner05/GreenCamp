@@ -1,25 +1,28 @@
 import React, { useState } from "react";
 import MapPi from "./map-picture.jpg";
-import pic from "./pic";
 import Pic from "./pic";
-import Popup from "./popUp";
+
 //import "./map.css";
-import DebugPic from "./debugPic";
+
 
 
 const Map = () => {
-  const [popUpVisible, setPopUpVisible] = useState(false);
-  const [popUpContent, setPopUpContent] = useState("");
-  
-  const handleImageClick = (e) => {
-    
-    
 
-  };
+  //Add eventlisteners
+  let paths = document.getElementsByTagName('path');
+  for(let i = 0; i < paths.length; i++){
+    paths[i].addEventListener('mouseover', hoverEvent);
+  }
+
+  
+
+  function hoverEvent(el){
+    console.log("Hovered");
+  }
   
   return (
     <>
-      <DebugPic></DebugPic>
+      <Pic></Pic>
     
 
       

@@ -4,6 +4,9 @@ svg path {
     stroke-width: .25;
 }
 
+.gugus{
+
+}
 
 svg path:hover{
     fill: aqua;

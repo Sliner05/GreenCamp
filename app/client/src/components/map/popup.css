@@ -52,7 +52,7 @@ button {
   background-color: #8db596;
   color: white;
 
-  padding: 14px 20px;
+  padding: 7px 10px;
   margin: 10px 2px;
   border: none;
   cursor: pointer;
@@ -74,6 +74,6 @@ button:hover {
 .row {
   text-align: center;
   /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
-  margin-left: -20px;
-  margin-right: -20px;
+  margin-left: -10px;
+  margin-right: -10px;
 }

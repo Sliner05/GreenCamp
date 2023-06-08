@@ -22,6 +22,21 @@ db.connect((err) => {
   }
 });
 
+
+
+app.post("/getCLient", (req, res) => {
+  console.log("post on /getClient with areaId \"" + id +"\"")
+  id = req.body.id
+
+  let user = db.query(
+      'select c.CamperId, CamperVorname, CamperNachname, ResFrom, ResTill from TCamper c natural join TAreas a natural join TReservationen r where r.AreaId = ? and a.AreaId = ?;',
+      [id, id],
+      (err, resD) =>{
+        //Code logics
+      }
+  )
+})
+
 app.post("/newClient", (req, res) => {
   let CamperCount;
   console.log("post on /NewCLient");

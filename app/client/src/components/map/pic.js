@@ -11,11 +11,12 @@ Im svg müssen paths mit css style="" enthalten!
 function Pic(PicWidth = "1066.000000pt", PicHeight = "686.000000pt") {
   
   //1600.000000pt,  1029.000000pt
+  
+
+
   return (
     <>
      <div>
-
-      
      <SvgIcon id="map" width={500}
         height={500}
         SVGBackground="#fff"

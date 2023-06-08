@@ -7,6 +7,8 @@ import { ReactComponent as SvgIcon } from "./img/map-svg.svg";
 /*
 Im svg müssen paths mit css style="" enthalten!
 */
+//Glovale variabel
+
 
 function Pic(PicWidth = "1066.000000pt", PicHeight = "686.000000pt") {
   

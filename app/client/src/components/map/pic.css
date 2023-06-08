@@ -19,3 +19,13 @@ svg{
     padding-bottom: 10%;
     padding-right: 10%;
 }
+
+.reserviert{
+    background-color: red;
+    fill: red;
+}
+
+.frei{
+    background-color: green;
+    fill: green;
+}

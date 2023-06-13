@@ -2,7 +2,25 @@ import React, { useState } from "react";
 import "./popup.css";
 import axios from "axios";
 
+
+
+let camperData = axios.get("getCLient")
+    .then((response) => {
+      //TODO add response data to Form-value-states
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+camperData = camperData.data
 function Popup() {
+  document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 27) {
+      setPopupOpen(false)
+      console.log("Escape key was pressed!");
+    }
+  });
+
+
   let [id, setid] = useState(undefined);
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -15,6 +33,8 @@ function Popup() {
     land: "",
     fzNr: "",
     kredNr: "",
+    ResFrom: "",
+    ResTill: "",
   });
 
   const handleChange = (e) => {
@@ -33,6 +53,8 @@ function Popup() {
       land: formData.land,
       fzNr: formData.fzNr,
       kredNr: formData.kredNr,
+      ResFrom: formData.ResFrom,
+      ResTill: formData.ResTill,
     });
 
     console.log(formData);
@@ -43,7 +65,32 @@ function Popup() {
     id = e.target.id;
     setPopupOpen(true);
     console.log(id);
+    let elChange
+    let data = axios.post("http://localhost:3001/getClient", setdata)
+    function setdata(data) {
+      elChange = document.getElementsByName("str")
+          elChange.value = data[0].str
+          elChange = document.getElementsByName("strNr")
+          elChange.value = data[0].strNr
+          elChange = document.getElementsByName("plz")
+          elChange.value = data[0].plz
+          elChange = document.getElementsByName("ort")
+          elChange.value = data[0].ort
+      elChange = document.getElementsByName("land")
+          elChange.value = data[0].land
+          elChange = document.getElementsByName("fzNr")
+          elChange.value = data[0].fzNr
+          elChange = document.getElementsByName("kredNr")
+          elChange.value = data[0].kredNr
+          elChange = document.getElementsByName("ResFrom")
+          elChange.value = data[0].ResFrom
+          elChange = document.getElementsByName("ResTill")
+          elChange.value = data[0].ResTill
+    }
+
   }
+
+
 
   return (
     <div className="App">
@@ -59,7 +106,7 @@ function Popup() {
               <input
                 type="text"
                 name="vorname"
-                placeholder="Nome di battesimo"
+                placeholder="vorname"
                 value={formData.vorname}
                 onChange={handleChange}
               />
@@ -68,7 +115,7 @@ function Popup() {
               <input
                 type="text"
                 name="nachname"
-                placeholder="Cognome"
+                placeholder="nachname"
                 value={formData.nachname}
                 onChange={handleChange}
               />
@@ -77,7 +124,7 @@ function Popup() {
               <input
                 type="text"
                 name="str"
-                placeholder="Strada"
+                placeholder="str"
                 value={formData.str}
                 onChange={handleChange}
               />
@@ -86,7 +133,7 @@ function Popup() {
               <input
                 type="text"
                 name="strNr"
-                placeholder="Numero civico"
+                placeholder="strNr"
                 value={formData.strNr}
                 onChange={handleChange}
               />
@@ -95,7 +142,7 @@ function Popup() {
               <input
                 type="text"
                 name="plz"
-                placeholder="Codice postale"
+                placeholder="PLZ"
                 value={formData.plz}
                 onChange={handleChange}
               />
@@ -104,7 +151,7 @@ function Popup() {
               <input
                 type="text"
                 name="ort"
-                placeholder="Luogo"
+                placeholder="Ort"
                 value={formData.ort}
                 onChange={handleChange}
               />
@@ -113,7 +160,7 @@ function Popup() {
               <input
                 type="text"
                 name="land"
-                placeholder="Paese"
+                placeholder="Land"
                 value={formData.land}
                 onChange={handleChange}
               />
@@ -122,16 +169,31 @@ function Popup() {
               <input
                 type="text"
                 name="fzNr"
-                placeholder="Numero del veicolo"
+                placeholder="fzNr"
                 value={formData.fzNr}
                 onChange={handleChange}
+              />
+
+              <label>ResFrom</label>
+              <input
+                  type="date"
+                  name="ResFrom"
+                  value={formData.ResFrom}
+                  onChange={handleChange}
+              />
+              <label>ResTill</label>
+              <input
+                  type="date"
+                  name="ResTill"
+                  value={formData.ResTill}
+                  onChange={handleChange}
               />
 
               <label>Numero di carta di credito</label>
               <input
                 type="text"
                 name="kredNr"
-                placeholder="Numero di carta di credito"
+                placeholder="kredNr"
                 value={formData.kredNr}
                 onChange={handleChange}
               />

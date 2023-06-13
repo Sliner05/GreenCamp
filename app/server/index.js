@@ -18,13 +18,11 @@ db.connect((err) => {
   if (err) {
     console.log("DB Connection error: ", err);
   } else {
-    console.log("Connected to DB!");
+    console.log("Connected tos DB!");
   }
 });
 
-
-
-app.post("/getCLient", (req, res) => {
+app.get("/getCLient", (req, res) => {
   console.log("post on /getClient with areaId \"" + id +"\"")
   id = req.body.id
 
@@ -35,6 +33,39 @@ app.post("/getCLient", (req, res) => {
         //Code logics
       }
   )
+  // TODO change whole structure to array with indexes instead of var's
+  //read data from query above in var's'
+  let data = []
+  let cId = user[0].CamperId
+  let vorname = user[0].CamperVorname
+  let nachname = user[0].CamperNachname
+  let ResFrom = user[0].ResFrom
+  let ResTill = user[0].ResTill
+
+// initialize var's for query below
+  let str
+  let strNr
+  let plz
+  let ort
+  let land
+  let fzNr
+  let kredNr
+
+  let userData = db.query('select * from TUser where Id = ?',
+      [id],
+      (err, resD) =>{
+        str = res[0].str
+        strNr = res[0].strNr
+        plz = res[0].plz
+        ort = res[0].ort
+        land = res[0].land
+        fzNr = res[0].fzNr
+        kredNr = res[0].kredNr
+      }
+      )
+  //push var's in arra
+  data.push(cId, vorname, nachname, ResFrom, ResTill, str, strNr, plz, ort, land, fzNr, kredNr)
+  res = data
 })
 
 app.post("/newClient", (req, res) => {
@@ -77,22 +108,7 @@ app.post("/newClient", (req, res) => {
         }
       }
     }
-  ); /*.then(() => {
-    console.log(CamperCount);
-    if (CamperCount === 0) {
-      "INSERT INTO TCamper(CamperVorname, CamperNachname, CamperStrNr, CamperStrasse, CamperLand, CamperKredNr, CamperPLZ) VALUES (?,?,?,?, ?, ?, ?)",
-        [vorname, nachname, strNr, str, land, kredNr, plz],
-        (err, result) => {
-          if (err) {
-            console.log(err);
-          } else {
-            res.send("Values Inserted");
-          }
-        };
-    } else {
-      res.send("Values already exist");
-    }
-  });*/
+  );
 });
 
 app.listen(3001, () => {

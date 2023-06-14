@@ -4,10 +4,13 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const { response } = require("express");
 const sha256 = require("js-sha256");
+const node: util = require("node:util");
 
 app.use(cors());
 app.use(express.json());
 
+
+// don't look here
 const db = mysql.createConnection({
   user: "SC_Campo",
   host: "i-kf.ch",
@@ -67,6 +70,31 @@ app.get("/getCLient", (req, res) => {
   data.push(cId, vorname, nachname, ResFrom, ResTill, str, strNr, plz, ort, land, fzNr, kredNr)
   res = data
 })
+
+app.get("/checkClient", (req, res) => {
+    let isFree;
+    let from = body.req.ResFrom
+    let till = body.req.ResTill
+    console.log("post on /CheckClient")
+    db.query(
+        "SELECT count(*) FROM TReservationen WHERE ResFrom NOT BETWEEN ? AND ? AND ResTill NOT BETWEEN ? AND ?",
+        [from, till, from, till],
+        (err, resD) => {
+            if (err) {
+                console.log(err);
+            } else {
+                if (resD[0]["count(*)"] == 0) {
+                    isFree = true;
+                } else {
+                    isFree = false
+                }
+            }
+
+
+        })
+    res = isFree
+})
+
 
 app.post("/newClient", (req, res) => {
   let CamperCount;

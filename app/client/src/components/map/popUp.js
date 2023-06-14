@@ -13,12 +13,7 @@ let camperData = axios.get("getCLient")
     });
 camperData = camperData.data
 function Popup() {
-  document.addEventListener("keyup", function(event) {
-    if (event.keyCode === 27) {
-      setPopupOpen(false)
-      console.log("Escape key was pressed!");
-    }
-  });
+
 
 
   let [id, setid] = useState(undefined);
@@ -42,31 +37,44 @@ function Popup() {
   };
 
   const handleSubmit = (e) => {
-    axios.post("http://localhost:3001/newClient", {
-      id: id, //id for get requests and reservations later
-      vorname: formData.vorname,
-      nachname: formData.nachname,
-      str: formData.str,
-      strNr: formData.strNr,
-      plz: formData.plz,
-      ort: formData.ort,
-      land: formData.land,
-      fzNr: formData.fzNr,
-      kredNr: formData.kredNr,
-      ResFrom: formData.ResFrom,
-      ResTill: formData.ResTill,
-    });
+      let isfree = axios.get("http://localhost:3001/checkReservation", {
+          ResFrom: formData.ResFrom,
+          ResTill: formData.ResTill,
+      }).then()
+      if (isfree){
+          if (window.confirm("Futur Reservation?")) {
+              axios.post("http://localhost:3001/newClient", {
+                  id: id, //id for get requests and reservations later
+                  vorname: formData.vorname,
+                  nachname: formData.nachname,
+                  str: formData.str,
+                  strNr: formData.strNr,
+                  plz: formData.plz,
+                  ort: formData.ort,
+                  land: formData.land,
+                  fzNr: formData.fzNr,
+                  kredNr: formData.kredNr,
+                  ResFrom: formData.ResFrom,
+                  ResTill: formData.ResTill,
+              });
 
-    console.log(formData);
-    setPopupOpen(false);
-  };
+              console.log(formData);
+              setPopupOpen(false);
+          };
+          } else {
+
+          }
+      }
+
+
+
 
   function handleClick(e) {
     id = e.target.id;
     setPopupOpen(true);
     console.log(id);
     let elChange
-    let data = axios.post("http://localhost:3001/getClient", setdata)
+    let data = axios.get("http://localhost:3001/getClient", setdata)
     function setdata(data) {
       elChange = document.getElementsByName("str")
           elChange.value = data[0].str

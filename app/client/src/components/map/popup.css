@@ -1,16 +1,79 @@
 .App {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .popup {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/*input style*/
+input {
+  padding: 5px;
+  margin: 2px;
+  box-sizing: border-box;
+  display: inline-block;
+}
+input[type="text"]:focus {
+  border: 3px solid #707070;
+  background-color: #bedbbb;
+}
+
+.popup-inner {
+  border: 5px solid #8db596;
+  max-width: min-content;
+  margin: auto;
+  padding: 30px;
+  padding-left: 150px;
+  padding-right: 150px;
+  background-color: white;
+  border-radius: 5px;
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #7070706a;
+  display: flex;
+  /*padding?*/
+
+  padding-bottom: 100px;
+  padding-left: 100px;
+  padding-top: 10px;
+  padding-right: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+/*border*/
+
+/*button style*/
+button {
+  background-color: #8db596;
+  color: white;
+
+  padding: 7px 10px;
+  margin: 10px 2px;
+  border: none;
+  cursor: pointer;
+  width: max-content;
+}
+
+/*hover effect*/
+button:hover {
+  background-color: #707070;
+}
+
+/*red close Button*/
+.closeBtn {
+  width: auto;
+
+  background-color: #92817a;
+}
+
+.row {
+  text-align: center;
+  /*the same margin which is every button have, it is for small screen, and if you have many buttons.*/
+  margin-left: -10px;
+  margin-right: -10px;
+}

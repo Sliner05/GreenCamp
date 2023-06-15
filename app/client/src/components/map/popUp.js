@@ -4,7 +4,7 @@ import axios from "axios";
 
 
 
-let camperData = axios.get("getCLient")
+let camperData = axios.get("http://localhost:3001/getCLient") // http eingefügt
     .then((response) => {
       //TODO add response data to Form-value-states
     })
@@ -13,6 +13,19 @@ let camperData = axios.get("getCLient")
     });
 camperData = camperData.data
 function Popup() {
+
+
+  let paths = document.getElementsByTagName('path');
+  for(let i = 0; i < paths.length; i++){
+      paths[i].addEventListener('click', handleClick);
+      
+
+    
+    
+
+
+  }
+
 
 
 
@@ -102,9 +115,7 @@ function Popup() {
 
   return (
     <div className="App">
-      <button id="345" onClick={handleClick}>
-        Öffne Popup
-      </button>
+
       {popupOpen && (
         <div className="popup">
           <div className="popup-inner">

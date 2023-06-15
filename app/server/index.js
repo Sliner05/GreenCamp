@@ -4,7 +4,7 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const { response } = require("express");
 const sha256 = require("js-sha256");
-const node: util = require("node:util");
+//const node: util = require("node:util");
 
 app.use(cors());
 app.use(express.json());

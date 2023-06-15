@@ -1,3 +1,7 @@
-# gitignore für alles AUSSER /app/* --> client und server haben eigenene gitignores
-
-/DB/.idea
+./DB/.idea
+.idea
+.idea
+/app/client/node_modules
+/app/server/node_modules
+\app\client\node_modules
+\app\server\node_modules

@@ -1,18 +1,35 @@
-import React, { useState } from 'react';
-import './popup.css';
+import React, { useState } from "react";
+import "./popup.css";
+import axios from "axios";
 
+
+
+let camperData = axios.get("getCLient")
+    .then((response) => {
+      //TODO add response data to Form-value-states
+    })
+    .catch((error) => {
+      console.error(error)
+    });
+camperData = camperData.data
 function Popup() {
+
+
+
+  let [id, setid] = useState(undefined);
   const [popupOpen, setPopupOpen] = useState(false);
   const [formData, setFormData] = useState({
-    vorname: '',
-    nachname: '',
-    fzNr: '',
-    strNr: '',
-    str: '',
-    plz: '',
-    ort: '',
-    land: '',
-    kredNr: ''
+    vorname: "",
+    nachname: "",
+    str: "",
+    strNr: "",
+    plz: "",
+    ort: "",
+    land: "",
+    fzNr: "",
+    kredNr: "",
+    ResFrom: "",
+    ResTill: "",
   });
 
   const handleChange = (e) => {
@@ -20,55 +37,116 @@ function Popup() {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Hier kannst du die Daten verarbeiten und an den Server senden.
-    console.log(formData);
-    setPopupOpen(false);
-  };
+      let isfree = axios.get("http://localhost:3001/checkReservation", {
+          ResFrom: formData.ResFrom,
+          ResTill: formData.ResTill,
+      }).then()
+      if (isfree){
+          if (window.confirm("Futur Reservation?")) {
+              axios.post("http://localhost:3001/newClient", {
+                  id: id, //id for get requests and reservations later
+                  vorname: formData.vorname,
+                  nachname: formData.nachname,
+                  str: formData.str,
+                  strNr: formData.strNr,
+                  plz: formData.plz,
+                  ort: formData.ort,
+                  land: formData.land,
+                  fzNr: formData.fzNr,
+                  kredNr: formData.kredNr,
+                  ResFrom: formData.ResFrom,
+                  ResTill: formData.ResTill,
+              });
+
+              console.log(formData);
+              setPopupOpen(false);
+          };
+          } else {
+
+          }
+      }
+
+
+
+
+  function handleClick(e) {
+    id = e.target.id;
+    setPopupOpen(true);
+    console.log(id);
+    let elChange
+    let data = axios.get("http://localhost:3001/getClient", setdata)
+    function setdata(data) {
+      elChange = document.getElementsByName("str")
+          elChange.value = data[0].str
+          elChange = document.getElementsByName("strNr")
+          elChange.value = data[0].strNr
+          elChange = document.getElementsByName("plz")
+          elChange.value = data[0].plz
+          elChange = document.getElementsByName("ort")
+          elChange.value = data[0].ort
+      elChange = document.getElementsByName("land")
+          elChange.value = data[0].land
+          elChange = document.getElementsByName("fzNr")
+          elChange.value = data[0].fzNr
+          elChange = document.getElementsByName("kredNr")
+          elChange.value = data[0].kredNr
+          elChange = document.getElementsByName("ResFrom")
+          elChange.value = data[0].ResFrom
+          elChange = document.getElementsByName("ResTill")
+          elChange.value = data[0].ResTill
+    }
+
+  }
+
+
 
   return (
     <div className="App">
-      <button onClick={() => setPopupOpen(true)}>Öffne Popup</button>
+      <button id="345" onClick={handleClick}>
+        Öffne Popup
+      </button>
       {popupOpen && (
         <div className="popup">
           <div className="popup-inner">
-            <h2>Daten eingeben</h2>
+            <h2>Inserire nuovo cliente</h2>
             <form onSubmit={handleSubmit}>
+              <label>Nome di battesimo</label>
               <input
                 type="text"
                 name="vorname"
-                placeholder="Vorname"
+                placeholder="vorname"
                 value={formData.vorname}
                 onChange={handleChange}
               />
+
+              <label>Cognome</label>
               <input
                 type="text"
                 name="nachname"
-                placeholder="Nachname"
+                placeholder="nachname"
                 value={formData.nachname}
                 onChange={handleChange}
               />
-              <input
-                type="text"
-                name="fzNr"
-                placeholder="Fahrzeugnummer"
-                value={formData.fzNr}
-                onChange={handleChange}
-              />
-              <input
-                type="text"
-                name="strNr"
-                placeholder="Straßennummer"
-                value={formData.strNr}
-                onChange={handleChange}
-              />
+
+              <label>Strada</label>
               <input
                 type="text"
                 name="str"
-                placeholder="Straße"
+                placeholder="str"
                 value={formData.str}
                 onChange={handleChange}
               />
+
+              <label>Numero civico</label>
+              <input
+                type="text"
+                name="strNr"
+                placeholder="strNr"
+                value={formData.strNr}
+                onChange={handleChange}
+              />
+
+              <label>Codice postale</label>
               <input
                 type="text"
                 name="plz"
@@ -76,6 +154,8 @@ function Popup() {
                 value={formData.plz}
                 onChange={handleChange}
               />
+
+              <label>Luogo</label>
               <input
                 type="text"
                 name="ort"
@@ -83,6 +163,8 @@ function Popup() {
                 value={formData.ort}
                 onChange={handleChange}
               />
+
+              <label>Paese</label>
               <input
                 type="text"
                 name="land"
@@ -90,16 +172,46 @@ function Popup() {
                 value={formData.land}
                 onChange={handleChange}
               />
+
+              <label>Numero del veicolo</label>
+              <input
+                type="text"
+                name="fzNr"
+                placeholder="fzNr"
+                value={formData.fzNr}
+                onChange={handleChange}
+              />
+
+              <label>ResFrom</label>
+              <input
+                  type="date"
+                  name="ResFrom"
+                  value={formData.ResFrom}
+                  onChange={handleChange}
+              />
+              <label>ResTill</label>
+              <input
+                  type="date"
+                  name="ResTill"
+                  value={formData.ResTill}
+                  onChange={handleChange}
+              />
+
+              <label>Numero di carta di credito</label>
               <input
                 type="text"
                 name="kredNr"
-                placeholder="Kreditkartennummer"
+                placeholder="kredNr"
                 value={formData.kredNr}
                 onChange={handleChange}
               />
-              <button type="submit">Absenden</button>
+              <div class="row">
+                <button type="submit">Salva sul computer</button>
+                <button class="closeBtn" onClick={() => setPopupOpen(false)}>
+                  Vicino
+                </button>
+              </div>
             </form>
-            <button onClick={() => setPopupOpen(false)}>Schließen</button>
           </div>
         </div>
       )}

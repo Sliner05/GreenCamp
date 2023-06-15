@@ -3,7 +3,7 @@ import MapPi from "./map-picture.jpg";
 import Pic from "./pic";
 import Popup from "./popUp";
 
-//import "./map.css";
+//
 
 let reserviert = false;
 let grr = [];

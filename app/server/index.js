@@ -28,7 +28,7 @@ db.connect((err) => {
 
 //begin code logic
 app.get("/getCLient/:id", (req, res) => {
-  id = req.params.id
+  id = req.params.id // liest ID aus parameter :id aus
     console.log("post on /getClient with areaId \"" + id +"\"")
 
   let user = db.query(

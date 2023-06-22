@@ -6,9 +6,9 @@ const { response } = require("express");
 const sha256 = require("js-sha256");
 
 //const node: util = require("node:util");
-
-app.use(cors());
 app.use(express.json());
+app.use(cors());
+
 
 
 // don't look here
@@ -28,6 +28,9 @@ db.connect((err) => {
 // initial stuff
 
 
+
+
+
 //Habe noch eine funktion zum holen aller id's die Reserviert wurden eingefügt PS: Jan
 app.get("/getIdsRes", (req, res) => { // {mode:'cors'} Error weil cors nicht verwendet wurde
   let ids = [];   //select * from TAreas where AreaId in( select ResId from TReservationen);
@@ -42,9 +45,6 @@ app.get("/getIdsRes", (req, res) => { // {mode:'cors'} Error weil cors nicht ver
   });
   res = ids;
 });
-
-
-
 
 
 //begin code logic

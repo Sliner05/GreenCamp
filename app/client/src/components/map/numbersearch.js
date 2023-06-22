@@ -3,7 +3,7 @@ import "./pic.css";
 
 
 const Numbersearch = () => { // Validierung
-    //Ellements
+    //Ellements//
     
 
 
@@ -14,7 +14,8 @@ const Numbersearch = () => { // Validierung
 
     function GetCampPlace(value) {
         let input = document.getElementById('search-input');
-        let paths = document.getElementsByTagName('path');
+        let paths = document.getElementsByTagName('path')
+        console.log(input.value);
         for (let i = 0; i < paths.length; i++) {
             if(input.value == paths[i].id){
                 paths[i].classList.add('selectedCamper');

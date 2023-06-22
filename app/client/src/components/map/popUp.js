@@ -16,6 +16,11 @@ function Popup() {
 
   //Eventlistener auf handleClick
   let paths = document.getElementsByTagName('path');
+  try{
+    for(let i = 0; i < paths.length; i++){
+      paths[i].removeEventListener('click', handleClick);
+  }
+  }catch{}
   for(let i = 0; i < paths.length; i++){
       paths[i].addEventListener('click', handleClick);
   }
@@ -25,7 +30,7 @@ function Popup() {
 
   }
 
-
+//
 
 
   let [id, setid] = useState(undefined);

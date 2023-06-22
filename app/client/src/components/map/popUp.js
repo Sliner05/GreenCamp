@@ -14,19 +14,23 @@ let camperData = axios.get("http://localhost:3001/getCLient") // http eingefügt
 camperData = camperData.data
 function Popup() {
 
-
+  //Eventlistener auf handleClick
   let paths = document.getElementsByTagName('path');
+  try{
+    for(let i = 0; i < paths.length; i++){
+      paths[i].removeEventListener('click', handleClick);
+  }
+  }catch{}
   for(let i = 0; i < paths.length; i++){
       paths[i].addEventListener('click', handleClick);
-      
+  }
 
-    
-    
-
+  //Hier sollten später die reservierungen ausgelesen werden//
+  function setFieldColors(){
 
   }
 
-
+//
 
 
   let [id, setid] = useState(undefined);

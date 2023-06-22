@@ -2,15 +2,18 @@ import React, { useState } from "react";
 import MapPi from "./map-picture.jpg";
 import Pic from "./pic";
 import Popup from "./popUp";
+import Numbersearch from "./numbersearch";
 
-//
 
+/* //Reservierung vars
 let reserviert = false;
 let grr = [];
+*/
 
 const Map = () => {
-  //var popUP = new Popup();
-  
+  //
+
+  /*
   function checkIfReserviert(kundeanDat){ //Alle Kunden eines bestimmten Datums müssen übergeben werden (ALs Array), /X/ und die id des camping platzes
     let kundIds = [];
     //Liesst alle Reservierten kundendaten aus.
@@ -27,8 +30,9 @@ const Map = () => {
       paths[i].addEventListener('click', clickEvent);
       console.log(i)
       grr.push(i);
-      //Add green fill for certain field
-      /*Wird später entfernnt und durch datenbank reservierungen daten ersetze*/  paths[i].classList.add('frei');
+      //Add green fill for certain fie
+      //Wird später entfernnt und durch datenbank reservierungen daten ersetze 
+      paths[i].classList.add('frei');
 
     }
     
@@ -66,13 +70,15 @@ const Map = () => {
 
     
     //handleClick();
-  }
+  }*/
   
   return (
     <>
+    <Popup></Popup>
+    <Numbersearch id="searchBar"></Numbersearch>
       <Pic></Pic>
-    
-      <Popup></Popup>
+      
+      
       
       
 

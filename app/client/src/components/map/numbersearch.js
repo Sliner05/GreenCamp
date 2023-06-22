@@ -14,6 +14,9 @@ const Numbersearch = () => { // Validierung
 
     function GetCampPlace(value) {
         let input = document.getElementById('search-input');
+        if(input.value === null || input.value == ""){
+            return;
+        }
         let paths = document.getElementsByTagName('path')
         console.log(input.value);
         for (let i = 0; i < paths.length; i++) {
@@ -32,7 +35,7 @@ const Numbersearch = () => { // Validierung
                         <input type="text" id="search-input" placeholder="Search ID..." maxlength="4"
                             onInput={validierung}/>
                         <button type="submit" id="search-button"
-                            onClick={GetCampPlace()}>Search</button>
+                            onClick={GetCampPlace}>Search</button>
                     </div>
                 </li>
                 <li>  </li>

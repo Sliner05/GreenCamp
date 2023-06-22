@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import MapPi from "./map-picture.jpg";
 import Pic from "./pic";
 import Popup from "./popUp";
+import Numbersearch from "./numbersearch";
 
 
 /* //Reservierung vars
@@ -10,7 +11,7 @@ let grr = [];
 */
 
 const Map = () => {
-  
+  //
 
   /*
   function checkIfReserviert(kundeanDat){ //Alle Kunden eines bestimmten Datums müssen übergeben werden (ALs Array), /X/ und die id des camping platzes
@@ -73,9 +74,11 @@ const Map = () => {
   
   return (
     <>
+    <Popup></Popup>
+    <Numbersearch id="searchBar"></Numbersearch>
       <Pic></Pic>
-    
-      <Popup></Popup>
+      
+      
       
       
 

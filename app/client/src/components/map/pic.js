@@ -19,15 +19,16 @@ function Pic(PicWidth = "1066.000000pt", PicHeight = "686.000000pt") {
   return (
     <>
      <div>
-     <SvgIcon id="map" width={500}
-        height={500}
-        SVGBackground="#fff"
+      
+     <SvgIcon id="map" width={1200}
+        height={1200}
+        svgbackground="#fff"
         tool="auto"
-        detectAutoPan={false}
-        miniaturePosition="none"
-        scaleFactorOnWheel={1.1}
-        scaleFactorMin={0.8}
-        scaleFactorMax={10}/>
+        //detectautopan={false}
+        miniatureposition="none"
+        scalefactorowheel={1.1}
+        scalefactormin={0.8}
+        scalefactormax={10}/>
       
     </div>
     </>
@@ -35,3 +36,16 @@ function Pic(PicWidth = "1066.000000pt", PicHeight = "686.000000pt") {
 }
 
 export default Pic;
+
+/**
+ * SvgIcon id="map" width={500}
+        height={500}
+        svgbackground="#fff"
+        tool="auto"
+        //detectautopan={false}
+        miniatureposition="none"
+        scalefactorowheel={1.1}
+        scalefactormin={0.8}
+        scalefactormax={10}/>
+      
+ */

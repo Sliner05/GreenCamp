@@ -20,7 +20,7 @@ function Popup() {
       paths[i].addEventListener('click', handleClick);
   }
 
-  //Hier sollten später die reservierungen ausgelesen werden
+  //Hier sollten später die reservierungen ausgelesen werden//
   function setFieldColors(){
 
   }

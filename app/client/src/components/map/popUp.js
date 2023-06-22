@@ -87,7 +87,7 @@ function Popup() {
     setPopupOpen(true);
     console.log(id);
     let elChange
-    let data = axios.get("http://localhost:3001/getClient", setdata)
+    let data = axios.get("http://localhost:3001/getClient/" + id, setdata)
     function setdata(data) {
       elChange = document.getElementsByName("str")
           elChange.value = data[0].str

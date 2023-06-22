@@ -24,7 +24,9 @@ db.connect((err) => {
     console.log("Connected tos DB!");
   }
 });
+// initial stuff
 
+//begin code logic
 app.get("/getCLient", (req, res) => {
   console.log("post on /getClient with areaId \"" + id +"\"")
   id = req.body.id
@@ -36,7 +38,6 @@ app.get("/getCLient", (req, res) => {
         //Code logics
       }
   )
-  // TODO change whole structure to array with indexes instead of var's
   //read data from query above in var's'
   let data = []
   let cId = user[0].CamperId
@@ -66,7 +67,7 @@ app.get("/getCLient", (req, res) => {
         kredNr = res[0].kredNr
       }
       )
-  //push var's in arra
+  //push var's in array
   data.push(cId, vorname, nachname, ResFrom, ResTill, str, strNr, plz, ort, land, fzNr, kredNr)
   res = data
 })
@@ -89,8 +90,6 @@ app.get("/checkClient", (req, res) => {
                     isFree = false
                 }
             }
-
-
         })
     res = isFree
 })
@@ -141,4 +140,32 @@ app.post("/newClient", (req, res) => {
 
 app.listen(3001, () => {
   console.log("da Boi running on port  3001");
+});
+
+app.post("/getOccupiedSpaces", (req, res) => {
+    db.query("SELECT areaId FROM TReservationen WHERE ResFrom BETWEEN ? AND ? OR ResTill BETWEEN ? AND ?;",
+        [],
+        (err, result) => {
+            if (err){
+                console.log(err)
+            }
+            else{
+              return res[0];
+            }
+        }
+        )
+});
+
+app.post("/getFreeSpaces", (req, res) => {
+    db.query("SELECT areaId FROM TReservationen WHERE ResFrom not BETWEEN ? AND ? AND ResTill not BETWEEN ? AND ?;",
+        [],
+        (err, result) => {
+            if (err){
+                console.log(err)
+            }
+            else{
+                return res[0];
+            }
+        }
+    )
 });

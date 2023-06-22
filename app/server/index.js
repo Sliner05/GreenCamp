@@ -4,6 +4,7 @@ const mysql = require("mysql2");
 const cors = require("cors");
 const { response } = require("express");
 const sha256 = require("js-sha256");
+
 //const node: util = require("node:util");
 
 app.use(cors());
@@ -25,6 +26,26 @@ db.connect((err) => {
   }
 });
 // initial stuff
+
+
+//Habe noch eine funktion zum holen aller id's die Reserviert wurden eingefügt PS: Jan
+app.get("/getIdsRes", (req, res) => { // {mode:'cors'} Error weil cors nicht verwendet wurde
+  let ids = [];   //select * from TAreas where AreaId in( select ResId from TReservationen);
+  let id = db.query('select * from TAreas;', (err, resD) => {
+    console.log("   ");
+    console.log(resD);
+    console.log("   ");
+    console.log("   ");
+    for(let i = 0; i < resD.length; i++){
+      ids.push(resD[i].AreaId)
+    }
+  });
+  res = ids;
+});
+
+
+
+
 
 //begin code logic
 app.get("/getCLient", (req, res) => {
@@ -137,35 +158,37 @@ app.post("/newClient", (req, res) => {
     }
   );
 });
+app.post("/getFreeSpaces", (req, res) => {
+  db.query("SELECT areaId FROM TReservationen WHERE ResFrom not BETWEEN ? AND ? AND ResTill not BETWEEN ? AND ?;",
+      [],
+      (err, result) => {
+          if (err){
+              console.log(err)
+          }
+          else{
+              return res[0];
+          }
+      }
+  )
+});
+app.post("/getOccupiedSpaces", (req, res) => {
+  db.query("SELECT areaId FROM TReservationen WHERE ResFrom BETWEEN ? AND ? OR ResTill BETWEEN ? AND ?;",
+      [],
+      (err, result) => {
+          if (err){
+              console.log(err)
+          }
+          else{
+            return res[0];
+          }
+      }
+      )
+});
 
 app.listen(3001, () => {
   console.log("da Boi running on port  3001");
 });
 
-app.post("/getOccupiedSpaces", (req, res) => {
-    db.query("SELECT areaId FROM TReservationen WHERE ResFrom BETWEEN ? AND ? OR ResTill BETWEEN ? AND ?;",
-        [],
-        (err, result) => {
-            if (err){
-                console.log(err)
-            }
-            else{
-              return res[0];
-            }
-        }
-        )
-});
 
-app.post("/getFreeSpaces", (req, res) => {
-    db.query("SELECT areaId FROM TReservationen WHERE ResFrom not BETWEEN ? AND ? AND ResTill not BETWEEN ? AND ?;",
-        [],
-        (err, result) => {
-            if (err){
-                console.log(err)
-            }
-            else{
-                return res[0];
-            }
-        }
-    )
-});
+
+

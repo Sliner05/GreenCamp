@@ -48,9 +48,9 @@ app.get("/getIdsRes", (req, res) => { // {mode:'cors'} Error weil cors nicht ver
 
 
 //begin code logic
-app.get("/getCLient", (req, res) => {
-  console.log("post on /getClient with areaId \"" + id +"\"")
-  id = req.body.id
+app.get("/getCLient/:id", (req, res) => {
+  id = req.params.id
+    console.log("post on /getClient with areaId \"" + id +"\"")
 
   let user = db.query(
       'select c.CamperId, CamperVorname, CamperNachname, ResFrom, ResTill from TCamper c natural join TAreas a natural join TReservationen r where r.AreaId = ? and a.AreaId = ?;',
